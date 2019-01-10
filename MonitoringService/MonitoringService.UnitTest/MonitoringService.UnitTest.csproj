@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestFixtures\" />
+    <ProjectReference Include="..\MonitoringService\MonitoringService.csproj" />
   </ItemGroup>
 
 </Project>
