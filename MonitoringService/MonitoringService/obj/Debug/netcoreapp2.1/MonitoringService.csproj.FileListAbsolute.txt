@@ -1,0 +1,14 @@
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\bin\Debug\netcoreapp2.1\MonitoringService.deps.json
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\bin\Debug\netcoreapp2.1\MonitoringService.runtimeconfig.json
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\bin\Debug\netcoreapp2.1\MonitoringService.runtimeconfig.dev.json
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\bin\Debug\netcoreapp2.1\MonitoringService.dll
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\bin\Debug\netcoreapp2.1\MonitoringService.pdb
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.csprojAssemblyReference.cache
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.csproj.CoreCompileInputs.cache
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.RazorAssemblyInfo.cache
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.RazorAssemblyInfo.cs
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.AssemblyInfoInputs.cache
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.AssemblyInfo.cs
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.RazorTargetAssemblyInfo.cache
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.dll
+F:\HomeAssignment\monitoring-service\MonitoringService\MonitoringService\obj\Debug\netcoreapp2.1\MonitoringService.pdb
