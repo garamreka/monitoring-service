@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace MonitoringService.Controllers
 {
+    /// <summary>
+    /// Implementation of HomeController
+    /// </summary>
     public class HomeController : Controller
     {
-        // GET: /<controller>/
+        /// <summary>
+        /// Provides the result in json format
+        /// </summary>
+        /// <returns>With result</returns>
+        [HttpGet]
+        [Route("/api")]
         public IActionResult Index()
         {
-            return View();
+            return Json(new object());
         }
     }
 }
