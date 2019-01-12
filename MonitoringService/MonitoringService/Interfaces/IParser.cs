@@ -14,9 +14,9 @@ namespace MonitoringService.Interfaces
         string[] ReadFile();
 
         /// <summary>
-        /// Parses the file content to ServiceParameter
+        /// Parses the file line content to ServiceParameter
         /// </summary>
         /// <returns>With the ServiceParameter</returns>
-        ServiceParameter ParseToParameter();
+        Service ParseToService(string line);
     }
 }
