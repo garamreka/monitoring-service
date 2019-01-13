@@ -53,15 +53,15 @@ namespace MonitoringService.Repositories
         {
             var lines = _serviceParameterParser.ReadFile();
 
-            if (lines.Any())
+            if (!lines.Any())
             {
-                foreach (var line in lines)
-                {
-                    yield return _serviceParameterParser.ParseToService(line);
-                }
+                throw new Exception("Unable to get services.");
             }
 
-            throw new Exception("Unable to get services.");
+            foreach (var line in lines)
+            {
+                yield return _serviceParameterParser.ParseToService(line);
+            }
         }
 
         private Service GetServiceById(int id)
