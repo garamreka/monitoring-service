@@ -10,7 +10,7 @@
         /// <summary>
         /// The phone number of the contact person
         /// </summary>
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// The name of the contact person

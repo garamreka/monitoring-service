@@ -21,8 +21,7 @@ namespace MonitoringService.Models
         /// The associated phone number
         /// </summary>
         [Required]
-        [DataType(DataType.PhoneNumber)] //todo
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// The state of the service
