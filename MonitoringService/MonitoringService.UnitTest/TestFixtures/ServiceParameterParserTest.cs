@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using MonitoringService.Helpers;
 
 namespace MonitoringService.UnitTest.TestFixtures
@@ -51,8 +49,8 @@ namespace MonitoringService.UnitTest.TestFixtures
         [Test]
         public void ParseToService_Returns_PassiveService()
         {
-            var service = _serviceParameterParser.ParseToService(_passiveServiceFile);
-            Assert.AreEqual(_passiveService, service);
+            var service = _serviceParameterParser.ParseToService(PassiveServiceLineInFile);
+            Assert.AreEqual(PassiveService, service);
             Assert.AreEqual(2, _serviceParameterParser.Id);
         }
 
@@ -62,8 +60,8 @@ namespace MonitoringService.UnitTest.TestFixtures
         [Test]
         public void ParseToService_Returns_ActiveService()
         {
-            var service = _serviceParameterParser.ParseToService(_activeServiceFile);
-            Assert.AreEqual(_activeService, service);
+            var service = _serviceParameterParser.ParseToService(ActiveServiceLineInFile);
+            Assert.AreEqual(ActiveService, service);
             Assert.AreEqual(2, _serviceParameterParser.Id);
         }
 
@@ -71,10 +69,11 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the ParseToService method with active XL service
         /// </summary>
         [Test]
+        [Explicit]
         public void ParseToService_Returns_ActiveXlService()
         {
-            var service = _serviceParameterParser.ParseToService(_activeXlServiceFile);
-            Assert.AreEqual(_activeXlService, service);
+            var service = _serviceParameterParser.ParseToService(ActiveXlServiceLineInFile);
+            Assert.AreEqual(ActiveXlService, service);
             Assert.AreEqual(2, _serviceParameterParser.Id);
         }
 
@@ -85,8 +84,8 @@ namespace MonitoringService.UnitTest.TestFixtures
         [Explicit]
         public void ParseToService_Returns_ServiceWithOverrideList()
         {
-            var service = _serviceParameterParser.ParseToService(_overrideListInUseFile);
-            Assert.AreEqual(_serviceWithOverrideList, service);
+            var service = _serviceParameterParser.ParseToService(OverrideListInUseLineInFile);
+            Assert.AreEqual(ServiceWithOverrideList, service);
             Assert.AreEqual(2, _serviceParameterParser.Id);
         }
 
@@ -104,7 +103,6 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the ParseToService method with invalid state input
         /// </summary>
         [Test]
-        [Explicit]
         public void ParseToService_InvalidState_ThrowsException()
         {
             var line = "C055ABC4567";
@@ -135,7 +133,6 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the ParseToService method with invalid XL service state input
         /// </summary>
         [Test]
-        [Explicit]
         public void ParseToService_InvalidXlServiceState_ThrowsException()
         {
             var line = "A0551234567          OE 201110231600";
@@ -176,10 +173,19 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the ParseToService method with invalid override list usage input
         /// </summary>
         [Test]
-        [Explicit]
         public void ParseToService_InvalidOverrideListInUse_ThrowsException()
         {
             var line = "A0551234567          JE 20111023160008AB1200P";
+            Assert.Throws<Exception>(() => _serviceParameterParser.ParseToService(line));
+        }
+
+        /// <summary>
+        /// Tests the ParseToService method with invalid override list usage input
+        /// </summary>
+        [Test]
+        public void ParseToService_InvalidContactNumber_ThrowsException()
+        {
+            var line = "A0551234567          JE 20111023160008001200K0BB12345670551234567Peeter              Timo Tamm           ";
             Assert.Throws<Exception>(() => _serviceParameterParser.ParseToService(line));
         }
 
@@ -190,7 +196,8 @@ namespace MonitoringService.UnitTest.TestFixtures
         [Explicit]
         public void ReadFile_Returns_ValidArray()
         {
-            
+            var result = _serviceParameterParser.ReadFile();
+            Assert.IsNotEmpty(result);
         }
 
         #endregion
