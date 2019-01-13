@@ -71,7 +71,7 @@ namespace MonitoringService.Repositories
                 throw new ArgumentOutOfRangeException($"Invalid id: {id}. Id should be a positive integer.");
             }
 
-            var serviceParameter = GetAllService().FirstOrDefault(item => item.RequestSequenceId == id);
+            var serviceParameter = GetAllItem().FirstOrDefault(item => item.RequestSequenceId == id);
 
             if (serviceParameter != null)
             {

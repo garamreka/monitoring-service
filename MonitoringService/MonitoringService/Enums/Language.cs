@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MonitoringService.Enums
+﻿namespace MonitoringService.Enums
 {
     /// <summary>
     /// Implementation of Language enum

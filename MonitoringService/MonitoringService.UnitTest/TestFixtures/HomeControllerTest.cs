@@ -3,7 +3,6 @@ using MonitoringService.Interfaces;
 using MonitoringService.Models;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MonitoringService.UnitTest.TestFixtures
@@ -40,7 +39,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the Index action
         /// </summary>
         [Test]
-        public void Index_Returns_ServiceJson() //todo
+        public void Index_Returns_ServiceJson()
         {
             _mockServiceRepository
                 .Setup(repo => repo.GetItemById(It.IsAny<int>()))

@@ -9,6 +9,8 @@ namespace MonitoringService.Models
     /// </summary>
     public class XlService
     {
+        #region Public Properties
+
         /// <summary>
         /// The language of XL service
         /// </summary>
@@ -33,6 +35,8 @@ namespace MonitoringService.Models
         /// The list of contacts
         /// </summary>
         public IEnumerable<Contact> Contacts { get; set; }
+
+        #endregion
 
         #region Overrides
 

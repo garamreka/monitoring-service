@@ -3,7 +3,7 @@
 namespace MonitoringService.Interfaces
 {
     /// <summary>
-    /// Implementation of IPareser interface
+    /// Implementation of IParser interface
     /// </summary>
     public interface IParser
     {
