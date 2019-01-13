@@ -93,6 +93,11 @@ namespace MonitoringService.Helpers
 
         private bool ParseIsActive(string line, string trueValue, string falseValue)
         {
+            if (string.IsNullOrEmpty(line) || string.IsNullOrEmpty(trueValue) || string.IsNullOrEmpty(falseValue))
+            {
+                throw new Exception("Invalid input");
+            }
+
             if (line == trueValue)
             {
                 return true;
@@ -107,6 +112,11 @@ namespace MonitoringService.Helpers
 
         private string ParsePhoneNumber(string line)
         {
+            if (string.IsNullOrEmpty(line))
+            {
+                throw new Exception("Invalid input");
+            }
+
             if (line.Length == 10)
             {
                 var success = line.All(char.IsDigit);
@@ -124,6 +134,11 @@ namespace MonitoringService.Helpers
 
         private Language ParseLanguage(string line)
         {
+            if (string.IsNullOrEmpty(line))
+            {
+                throw new Exception("Invalid input");
+            }
+
             switch (line)
             {
                 case "E":
@@ -138,6 +153,11 @@ namespace MonitoringService.Helpers
 
         private DateTime ParseDateAndTime(string line)
         {
+            if (string.IsNullOrEmpty(line))
+            {
+                throw new Exception("Invalid input");
+            }
+
             var lineWithSeconds = line + "00";
             var format = "yyyyMMddHHmmss";
             DateTime dateTime;
@@ -155,6 +175,11 @@ namespace MonitoringService.Helpers
 
         private TimeSpan ParseTimeSpan(string line)
         {
+            if (string.IsNullOrEmpty(line))
+            {
+                throw new Exception("Invalid input");
+            }
+
             var lineWithSeconds = line + "00";
             var format = "hhmmss";
             TimeSpan timeSpan;
@@ -172,6 +197,11 @@ namespace MonitoringService.Helpers
 
         private IEnumerable<Contact> ParseContactList(string line)
         {
+            if (string.IsNullOrEmpty(line))
+            {
+                throw new Exception("Invalid input");
+            }
+
             var phoneNumberPattern = @"([0-9])+";
             Match phoneNumberMatch = Regex.Match(line, phoneNumberPattern);
 
