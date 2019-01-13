@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MonitoringService.Interfaces;
 using MonitoringService.Models;
@@ -44,17 +45,21 @@ namespace MonitoringService.UnitTest.TestFixtures
         public void GetAllItem_Returns_ValidServices()
         {
             _mockServiceParameterParser
-                .Setup(parser => parser.ParseToService(_activeXlServiceFile))
-                .Returns(_activeXlService);
+                .Setup(parser => parser.ReadFile())
+                .Returns(TestSourceFile);
+
+            _mockServiceParameterParser
+                .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
+                .Returns(ActiveXlService);
 
             var expectedResult = new List<Service>()
             {
-                _activeXlService
+                ActiveXlService
             };
 
             var result = _serviceRepository.GetAllItem();
 
-            Assert.AreEqual(_activeXlServiceFile, result);
+            Assert.AreEqual(expectedResult, result.ToList());
         }
 
         /// <summary>
@@ -64,12 +69,16 @@ namespace MonitoringService.UnitTest.TestFixtures
         public void GetItemById_Returns_ValidService()
         {
             _mockServiceParameterParser
-                .Setup(parser => parser.ParseToService(_activeXlServiceFile))
-                .Returns(_activeXlService);
+                .Setup(parser => parser.ReadFile())
+                .Returns(TestSourceFile);
+
+            _mockServiceParameterParser
+                .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
+                .Returns(ActiveXlService);
 
             var result = _serviceRepository.GetItemById(1);
 
-            Assert.AreEqual(_activeXlServiceFile, result);
+            Assert.AreEqual(ActiveXlService, result);
         }
 
         /// <summary>
@@ -78,9 +87,13 @@ namespace MonitoringService.UnitTest.TestFixtures
         [Test]
         public void GetItemById_InvalidId_ThrowsException()
         {
-            //_mockServiceParameterParser
-            //    .Setup(parser => parser.ParseToService(_activeXlServiceFile))
-            //    .Returns(_activeXlService);
+            _mockServiceParameterParser
+                .Setup(parser => parser.ReadFile())
+                .Returns(TestSourceFile);
+
+            _mockServiceParameterParser
+                .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
+                .Returns(ActiveXlService);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => _serviceRepository.GetItemById(0));
         }
@@ -91,9 +104,13 @@ namespace MonitoringService.UnitTest.TestFixtures
         [Test]
         public void GetItemById_OutOfRangeId_ThrowsException()
         {
-            //_mockServiceParameterParser
-            //    .Setup(parser => parser.ParseToService(_activeXlServiceFile))
-            //    .Returns(_activeXlService);
+            _mockServiceParameterParser
+                .Setup(parser => parser.ReadFile())
+                .Returns(TestSourceFile);
+
+            _mockServiceParameterParser
+                .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
+                .Returns(ActiveXlService);
 
             Assert.Throws<NullReferenceException>(() => _serviceRepository.GetItemById(10));
         }
