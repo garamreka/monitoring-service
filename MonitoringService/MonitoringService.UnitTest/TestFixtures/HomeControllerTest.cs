@@ -1,4 +1,5 @@
-﻿using MonitoringService.Controllers;
+﻿using System.IO;
+using MonitoringService.Controllers;
 using MonitoringService.Interfaces;
 using MonitoringService.Models;
 using Moq;
@@ -36,16 +37,16 @@ namespace MonitoringService.UnitTest.TestFixtures
         #region Tests
 
         /// <summary>
-        /// Tests the Index action
+        /// Tests the GetService action
         /// </summary>
         [Test]
-        public void Index_Returns_ServiceJson()
+        public void JsonService_Returns_GetService()
         {
             _mockServiceRepository
-                .Setup(repo => repo.GetItemById(It.IsAny<int>()))
+                .Setup(repo => repo.GetOneItem())
                 .Returns(ActiveService);
 
-            var result = (JsonResult)_homeController.Index();
+            var result = (JsonResult)_homeController.GetService();
 
             Assert.AreEqual(ActiveService, (Service)result.Value);
         }

@@ -41,9 +41,8 @@ namespace MonitoringService.Repositories
         /// <summary>
         /// Gets the item based on id
         /// </summary>
-        /// <param name="id"></param>
         /// <returns>With the Item</returns>
-        public Service GetItemById(int id) => GetServiceById(id);
+        public Service GetOneItem() => GetOneService();
 
         #endregion
 
@@ -64,21 +63,21 @@ namespace MonitoringService.Repositories
             }
         }
 
-        private Service GetServiceById(int id)
+        /// <summary>
+        /// Gets the service
+        /// </summary>
+        /// <returns>The service</returns>
+        /// <remarks>Source file has currently one service</remarks>
+        private Service GetOneService()
         {
-            if (id < 1)
-            {
-                throw new ArgumentOutOfRangeException($"Invalid id: {id}. Id should be a positive integer.");
-            }
-
-            var serviceParameter = GetAllItem().FirstOrDefault(item => item.RequestSequenceId == id);
+            var serviceParameter = GetAllItem().FirstOrDefault();
 
             if (serviceParameter != null)
             {
                 return serviceParameter;
             }
 
-            throw new NullReferenceException($"Could not find the services based on the given id: {id}");
+            throw new NullReferenceException($"Could not find the service.");
         }
 
         #endregion

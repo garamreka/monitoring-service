@@ -62,10 +62,10 @@ namespace MonitoringService.UnitTest.TestFixtures
         }
 
         /// <summary>
-        /// Tests the GetItemById with valid input
+        /// Tests the GetOneItem with valid input
         /// </summary>
         [Test]
-        public void GetItemById_Returns_ValidService()
+        public void GetOneItem_Returns_ValidService()
         {
             _mockServiceParameterParser
                 .Setup(parser => parser.ReadFile())
@@ -75,43 +75,9 @@ namespace MonitoringService.UnitTest.TestFixtures
                 .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
                 .Returns(ActiveXlService);
 
-            var result = _serviceRepository.GetItemById(1);
+            var result = _serviceRepository.GetOneItem();
 
             Assert.AreEqual(ActiveXlService, result);
-        }
-
-        /// <summary>
-        /// Tests the GetItemById with valid input
-        /// </summary>
-        [Test]
-        public void GetItemById_InvalidId_ThrowsException()
-        {
-            _mockServiceParameterParser
-                .Setup(parser => parser.ReadFile())
-                .Returns(TestSourceFile);
-
-            _mockServiceParameterParser
-                .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
-                .Returns(ActiveXlService);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => _serviceRepository.GetItemById(0));
-        }
-
-        /// <summary>
-        /// Tests the GetItemById with valid input
-        /// </summary>
-        [Test]
-        public void GetItemById_OutOfRangeId_ThrowsException()
-        {
-            _mockServiceParameterParser
-                .Setup(parser => parser.ReadFile())
-                .Returns(TestSourceFile);
-
-            _mockServiceParameterParser
-                .Setup(parser => parser.ParseToService(ActiveXlServiceLineInFile))
-                .Returns(ActiveXlService);
-
-            Assert.Throws<NullReferenceException>(() => _serviceRepository.GetItemById(10));
         }
 
         #endregion

@@ -14,10 +14,9 @@ namespace MonitoringService.Interfaces
         IEnumerable<T> GetAllItem();
 
         /// <summary>
-        /// Gets the item based on id
+        /// Gets the item
         /// </summary>
-        /// <param name="id"></param>
         /// <returns>With the Item</returns>
-        T GetItemById(int id);
+        T GetOneItem();
     }
 }

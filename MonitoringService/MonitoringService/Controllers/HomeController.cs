@@ -31,23 +31,38 @@ namespace MonitoringService.Controllers
 
         #region Actions
 
+        [HttpGet]
+        [Route("")]
+        public IActionResult Index()
+        {
+            return File("index.html", "text/html");
+        }
+
+
         /// <summary>
-        /// Provides the result in json format
+        /// Provides the service result in json format
         /// </summary>
         /// <returns>With result</returns>
         [HttpGet]
         [Route("/api")]
-        public IActionResult Index()
+        public IActionResult GetService()
         {
             try
             {
-                return Json(_serviceRepository.GetItemById(1)); //Currently there is only one item in source file
+                //Currently there is only one item in source file
+                var service = _serviceRepository.GetOneItem();
+                return Json(_serviceRepository.GetOneItem());
+                //return Json(new
+                //{
+                //    requestSequenceId = service.RequestSequenceId,
+                //    //phoneNumber = service.PhoneNumber,
+                //    //isActive = service.IsActive
+                //});
             }
             catch (Exception exception)
             {
                 return Json(exception.Message);
             }
-            
         }
 
         #endregion
