@@ -6,12 +6,14 @@
 <p>Prepare an application that periodically queries data from the network, converts said data to a suitable format and serves it up as an API service in JSON format.</p>
 <p></p>
 <h3>Implementation & environment info</h3>
-<p>Language: C#</p>
+<p>Language: C#, JavaScript</p>
 <p>Used tools, technologies and packages:</p>
 <ul>
   <li>ASP.NET Core v2.1</li>
   <li>MVC pattern</li>
   <li>Visual Studio 2017</li>
   <li>NUnit and Moq for unit testing</li>
-  <li></li>
+  <li>JQuery for frontend</li>
 </ul>
+<p>Internet connection is required to access legacy data source file.</p>
+<p><a href="https://documenter.getpostman.com/view/6384541/RznJmGNA">API documentation</a></p>
