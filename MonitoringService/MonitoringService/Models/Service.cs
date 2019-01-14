@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using MonitoringService.Enums;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MonitoringService.Models
 {
@@ -32,12 +34,12 @@ namespace MonitoringService.Models
         /// <summary>
         /// The expiry date of service
         /// </summary>
-        [DataType(DataType.DateTime)]
         public DateTime ExpiryDateAndTime { get; set; }
 
         /// <summary>
         /// The service language
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public Language ServiceLanguage { get; set; }
 
         /// <summary>

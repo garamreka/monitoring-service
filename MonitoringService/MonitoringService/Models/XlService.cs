@@ -1,6 +1,8 @@
 ﻿using MonitoringService.Enums;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MonitoringService.Models
 {
@@ -14,6 +16,7 @@ namespace MonitoringService.Models
         /// <summary>
         /// The language of XL service
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public Language XlServiceLanguage { get; set; }
 
         /// <summary>
