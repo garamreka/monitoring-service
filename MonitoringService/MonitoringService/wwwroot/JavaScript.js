@@ -2,16 +2,21 @@
 
     window.baseUrl = "https://localhost:44350";
 
+    CallBackend();
+});
+
+
+function CallBackend() {
     $.ajax({
         type: "GET",
         url: window.baseUrl + "/api",
         dataType: "json",
         success: function (data) {
             $("#requestSequenceId").text("Request sequence id: " + data.requestSequenceId);
-                $("#phoneNumber").text("Phone: " + data.phoneNumber);
+            $("#phoneNumber").text("Phone: " + data.phoneNumber);
 
-                if (data.isActive === false) {
-                    $("#isActive").text("Service inactive");
+            if (data.isActive === false) {
+                $("#isActive").text("Service inactive");
             }
 
             if (data.isActive === true) {
@@ -54,7 +59,7 @@
             DisplayError(error);
         }
     });
-});
+}
 
 function CreateTable(contacts) {
     var tablecontainer = document.getElementById("overrideList");
