@@ -1,3 +1,7 @@
 ﻿body {
     font-family: 'Open Sans', sans-serif;
 }
+
+.headerColor {
+    background-color: grey;
+}
