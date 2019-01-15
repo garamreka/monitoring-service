@@ -35,7 +35,15 @@ namespace MonitoringService.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            return File("index.html", "text/html");
+            try
+            {
+                return File("index.html", "text/html");
+            }
+            catch (Exception e)
+            {
+                return NotFound(e);
+            }
+            
         }
 
 
@@ -50,14 +58,7 @@ namespace MonitoringService.Controllers
             try
             {
                 //Currently there is only one item in source file
-                var service = _serviceRepository.GetOneItem();
                 return Json(_serviceRepository.GetOneItem());
-                //return Json(new
-                //{
-                //    requestSequenceId = service.RequestSequenceId,
-                //    //phoneNumber = service.PhoneNumber,
-                //    //isActive = service.IsActive
-                //});
             }
             catch (Exception exception)
             {
