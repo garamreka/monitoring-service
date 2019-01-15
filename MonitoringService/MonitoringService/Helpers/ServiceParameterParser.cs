@@ -151,7 +151,7 @@ namespace MonitoringService.Helpers
             }
         }
 
-        private DateTime ParseDateAndTime(string line)
+        private string ParseDateAndTime(string line)
         {
             if (string.IsNullOrEmpty(line))
             {
@@ -167,7 +167,7 @@ namespace MonitoringService.Helpers
 
             if (success)
             {
-                return dateTime;
+                return dateTime.ToString("MM/dd/yyyy HH:mm");
             }
 
             throw new Exception("Unable to define date and time.");

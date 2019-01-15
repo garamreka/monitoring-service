@@ -34,7 +34,7 @@ namespace MonitoringService.Models
         /// <summary>
         /// The expiry date of service
         /// </summary>
-        public DateTime ExpiryDateAndTime { get; set; }
+        public string ExpiryDateAndTime { get; set; }
 
         /// <summary>
         /// The service language
