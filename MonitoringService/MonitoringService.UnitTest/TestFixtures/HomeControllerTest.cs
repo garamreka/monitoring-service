@@ -1,5 +1,4 @@
-﻿using System.IO;
-using MonitoringService.Controllers;
+﻿using MonitoringService.Controllers;
 using MonitoringService.Interfaces;
 using MonitoringService.Models;
 using Moq;
@@ -40,6 +39,18 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the GetService action
         /// </summary>
         [Test]
+        [Explicit ("File access is not handled")]
+        public void Index_Returns_Html()
+        {
+            var result = (VirtualFileResult)_homeController.Index();
+            Assert.AreEqual("index.html", result.FileName);
+            Assert.AreEqual("text/html", result.ContentType);
+        }
+
+        /// <summary>
+        /// Tests the GetService action
+        /// </summary>
+        [Test]
         public void JsonService_Returns_GetService()
         {
             _mockServiceRepository
@@ -47,7 +58,6 @@ namespace MonitoringService.UnitTest.TestFixtures
                 .Returns(ActiveService);
 
             var result = (JsonResult)_homeController.GetService();
-
             Assert.AreEqual(ActiveService, (Service)result.Value);
         }
 
