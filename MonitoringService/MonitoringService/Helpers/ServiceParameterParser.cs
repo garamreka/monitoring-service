@@ -18,13 +18,18 @@ namespace MonitoringService.Helpers
     {
         #region Fields
 
-        private readonly string _dataSourceUrl = @"https://people.proekspert.ee/ak/data_1.txt";
+        private readonly string _dataSourceBaseUrl = @"https://people.proekspert.ee/ak/";
         private readonly string _activeService = "A";
         private readonly string _notActiveService = "P";
         private readonly string _activeXlService = "J";
         private readonly string _notActiveXlService = "E";
         private readonly string _activeOverrideList = "K";
         private readonly string _notActiveOverrideList = "E";
+
+        /// <summary>
+        /// Gives index to data source file
+        /// </summary>
+        public int DataSourceFileIndex = 1;
 
         /// <summary>
         /// Gives value to RequestSequenceId
@@ -81,7 +86,8 @@ namespace MonitoringService.Helpers
         /// <returns>With the lines of the file</returns>
         public string[] ReadFile()
         {
-            var request = WebRequest.Create(_dataSourceUrl) as HttpWebRequest;
+            var sourcePath = _dataSourceBaseUrl + "data_"+ DataSourceFileIndex +".txt";
+            var request = WebRequest.Create(sourcePath) as HttpWebRequest;
 
             if (request == null)
             {
@@ -99,6 +105,7 @@ namespace MonitoringService.Helpers
             var wholeContent = streamReader.ReadToEnd();
             streamReader.Close();
 
+            DataSourceFileIndex++;
             return wholeContent.Split('\n');
         }
 
