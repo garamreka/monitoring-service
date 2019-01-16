@@ -46,6 +46,10 @@ namespace MonitoringService.Helpers
         /// <returns>With the Service</returns>
         public Service ParseToService(string line)
         {
+            if (line == null)
+            {
+                throw new Exception("Invalid parameter.");
+            }
             var service = new Service()
             {
                 RequestSequenceId = Id,
