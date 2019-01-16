@@ -23,7 +23,7 @@ namespace MonitoringService.Helpers
         /// <summary>
         /// Gives value to RequestSequenceId
         /// </summary>
-        public int Id;
+        public int Id = 1;
 
         #endregion
 
@@ -35,8 +35,6 @@ namespace MonitoringService.Helpers
         /// <returns>With the ServiceParameter</returns>
         public Service ParseToService(string line)
         {
-            Id = 1;
-
             var service = new Service()
             {
                 RequestSequenceId = Id,

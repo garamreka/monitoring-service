@@ -46,7 +46,6 @@ namespace MonitoringService.Controllers
             
         }
 
-
         /// <summary>
         /// Provides the service result in json format
         /// </summary>
@@ -57,6 +56,7 @@ namespace MonitoringService.Controllers
         {
             try
             {
+                HttpContext.Response.Headers.Add("refresh", "5; url=" + Url.Action("Index"));
                 //Currently there is only one item in source file
                 return Json(_serviceRepository.GetOneItem());
             }
