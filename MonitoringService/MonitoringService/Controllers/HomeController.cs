@@ -31,6 +31,10 @@ namespace MonitoringService.Controllers
 
         #region Actions
 
+        /// <summary>
+        /// Gets index.html page
+        /// </summary>
+        /// <returns>With index.html</returns>
         [HttpGet]
         [Route("")]
         public IActionResult Index()

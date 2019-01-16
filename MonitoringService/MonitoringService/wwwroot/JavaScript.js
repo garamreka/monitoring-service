@@ -5,7 +5,6 @@
     CallBackend();
 });
 
-
 function CallBackend() {
     $.ajax({
         type: "GET",
@@ -62,7 +61,7 @@ function CallBackend() {
 }
 
 function CreateTable(contacts) {
-    var tablecontainer = document.getElementById("overrideList");
+    var tableContainer = document.getElementById("overrideList");
     var table = document.createElement("table");
 
     $("table").append("<tr><th class='headerColor'>Phone</th>" +
@@ -77,7 +76,7 @@ function CreateTable(contacts) {
             "</td></tr>");
     });
 
-    tablecontainer.appendChild(table);
+    tableContainer.appendChild(table);
 }
 
 function DisplayError(error) {

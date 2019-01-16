@@ -48,6 +48,10 @@ namespace MonitoringService.Repositories
 
         #region Private methods
 
+        /// <summary>
+        /// Gets all service
+        /// </summary>
+        /// <returns>With the services</returns>
         private IEnumerable<Service> GetAllService()
         {
             var lines = _serviceParameterParser.ReadFile();
@@ -67,7 +71,8 @@ namespace MonitoringService.Repositories
         /// Gets the service
         /// </summary>
         /// <returns>The service</returns>
-        /// <remarks>Source file has currently one service</remarks>
+        /// <remarks>Source file has currently only one service.
+        /// Method returns with first item by default.</remarks>
         private Service GetOneService()
         {
             var serviceParameter = GetAllItem().FirstOrDefault();
@@ -77,7 +82,7 @@ namespace MonitoringService.Repositories
                 return serviceParameter;
             }
 
-            throw new NullReferenceException($"Could not find the service.");
+            throw new NullReferenceException("Could not find the service.");
         }
 
         #endregion

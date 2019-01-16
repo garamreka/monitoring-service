@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using MonitoringService.Interfaces;
@@ -38,7 +37,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         #region Tests
 
         /// <summary>
-        /// Tests the GetAllItem method with valid input
+        /// Tests the GetAllItem method
         /// </summary>
         [Test]
         public void GetAllItem_Returns_ValidServices()
@@ -62,7 +61,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         }
 
         /// <summary>
-        /// Tests the GetOneItem with valid input
+        /// Tests the GetOneItem method
         /// </summary>
         [Test]
         public void GetOneItem_Returns_ValidService()

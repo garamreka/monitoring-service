@@ -1,7 +1,7 @@
 ﻿namespace MonitoringService.Models
 {
     /// <summary>
-    /// Implementation if Contact class
+    /// Implementation of Contact class
     /// </summary>
     public class Contact
     {

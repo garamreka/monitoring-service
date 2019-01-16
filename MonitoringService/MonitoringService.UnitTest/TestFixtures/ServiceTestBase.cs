@@ -36,7 +36,7 @@ namespace MonitoringService.UnitTest.TestFixtures
             PhoneNumber = "0551234567",
             IsActive = true,
             ServiceLanguage = Language.Estonian,
-            ExpiryDateAndTime = new DateTime(2011, 10, 23, 16, 00, 00),
+            ExpiryDateAndTime = "10. 23. 2011 16:00",
             IsXlServiceActive = false,
         };
 
@@ -46,7 +46,7 @@ namespace MonitoringService.UnitTest.TestFixtures
             PhoneNumber = "0551234567",
             IsActive = true,
             ServiceLanguage = Language.Estonian,
-            ExpiryDateAndTime = new DateTime(2011, 10, 23, 16, 00, 00),
+            ExpiryDateAndTime = "10. 23. 2011 16:00",
             IsXlServiceActive = true,
             XlService = new XlService()
             {
@@ -63,7 +63,7 @@ namespace MonitoringService.UnitTest.TestFixtures
             PhoneNumber = "0551234567",
             IsActive = true,
             ServiceLanguage = Language.Estonian,
-            ExpiryDateAndTime = new DateTime(2011, 10, 23, 16, 00, 00),
+            ExpiryDateAndTime = "10. 23. 2011 16:00",
             IsXlServiceActive = true,
             XlService = new XlService()
             {

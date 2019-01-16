@@ -69,7 +69,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the ParseToService method with active XL service
         /// </summary>
         [Test]
-        [Explicit("Equals is not working")]
+        [Explicit("Equals should be reviewed and overridden")]
         public void ParseToService_Returns_ActiveXlService()
         {
             var service = _serviceParameterParser.ParseToService(ActiveXlServiceLineInFile);
@@ -81,7 +81,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         /// Tests the ParseToService method with override list
         /// </summary>
         [Test]
-        [Explicit ("Equals is not working")]
+        [Explicit ("Equals should be reviewed and overridden")]
         public void ParseToService_Returns_ServiceWithOverrideList()
         {
             var service = _serviceParameterParser.ParseToService(OverrideListInUseLineInFile);

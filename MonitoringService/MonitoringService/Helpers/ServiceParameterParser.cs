@@ -19,6 +19,12 @@ namespace MonitoringService.Helpers
         #region Fields
 
         private readonly string _dataSourceUrl = @"https://people.proekspert.ee/ak/data_1.txt";
+        private readonly string _activeService = "A";
+        private readonly string _notActiveService = "P";
+        private readonly string _activeXlService = "J";
+        private readonly string _notActiveXlService = "E";
+        private readonly string _activeOverrideList = "K";
+        private readonly string _notActiveOverrideList = "E";
 
         /// <summary>
         /// Gives value to RequestSequenceId
@@ -30,23 +36,23 @@ namespace MonitoringService.Helpers
         #region Public methods
 
         /// <summary>
-        /// Parses the file line content to ServiceParameter
+        /// Parses the file line content to Service
         /// </summary>
-        /// <returns>With the ServiceParameter</returns>
+        /// <returns>With the Service</returns>
         public Service ParseToService(string line)
         {
             var service = new Service()
             {
                 RequestSequenceId = Id,
                 PhoneNumber = ParsePhoneNumber(line.Substring(1, 10)),
-                IsActive = ParseIsActive(line.Substring(0, 1), "A", "P")
+                IsActive = ParseIsActive(line.Substring(0, 1), _activeService, _notActiveService)
             };
 
             if (service.IsActive)
             {
                 service.ServiceLanguage = ParseLanguage(line.Substring(22, 1));
                 service.ExpiryDateAndTime = ParseDateAndTime(line.Substring(24, 12));
-                service.IsXlServiceActive = ParseIsActive(line.Substring(21, 1), "J", "E");
+                service.IsXlServiceActive = ParseIsActive(line.Substring(21, 1), _activeXlService, _notActiveXlService);
 
                 if (service.IsXlServiceActive)
                 {
@@ -55,7 +61,7 @@ namespace MonitoringService.Helpers
                         XlServiceLanguage = ParseLanguage(line.Substring(23, 1)),
                         XlServiceActivationTime = ParseTimeSpan(line.Substring(36, 4)),
                         XlServiceEndTime = ParseTimeSpan(line.Substring(40, 4)),
-                        IsOverrideListInUse = ParseIsActive(line.Substring(44, 1), "K", "E")
+                        IsOverrideListInUse = ParseIsActive(line.Substring(44, 1), _activeOverrideList, _notActiveOverrideList)
                     };
 
                     if (service.XlService.IsOverrideListInUse)
@@ -76,9 +82,20 @@ namespace MonitoringService.Helpers
         public string[] ReadFile()
         {
             var request = WebRequest.Create(_dataSourceUrl) as HttpWebRequest;
+
+            if (request == null)
+            {
+                throw new Exception("Unable to request source file.");
+            }
+
             var response = request.GetResponse() as HttpWebResponse;
 
-            var streamReader = new StreamReader(response.GetResponseStream());
+            if (response == null)
+            {
+                throw new Exception("Unable to get response.");
+            }
+
+            var streamReader = new StreamReader(response.GetResponseStream() ?? throw new InvalidOperationException("Unable to get stream."));
             var wholeContent = streamReader.ReadToEnd();
             streamReader.Close();
 
@@ -158,10 +175,9 @@ namespace MonitoringService.Helpers
 
             var lineWithSeconds = line + "00";
             var format = "yyyyMMddHHmmss";
-            DateTime dateTime;
 
             var success = DateTime.TryParseExact(
-                lineWithSeconds, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
+                lineWithSeconds, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime);
 
             if (success)
             {

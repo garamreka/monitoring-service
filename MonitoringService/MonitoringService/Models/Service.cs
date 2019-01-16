@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using MonitoringService.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
