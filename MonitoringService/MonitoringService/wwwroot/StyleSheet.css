@@ -3,5 +3,19 @@
 }
 
 .headerColor {
-    background-color: grey;
+    background-color: lightgrey;
+}
+
+table {
+    margin: 1%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    height: 30px;
+    
+}
+
+td {
+    width: 180px;
 }

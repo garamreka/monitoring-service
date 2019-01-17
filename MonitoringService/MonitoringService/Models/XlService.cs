@@ -22,12 +22,12 @@ namespace MonitoringService.Models
         /// <summary>
         /// The activation time of XL service
         /// </summary>
-        public TimeSpan XlServiceActivationTime { get; set; }
+        public string XlServiceActivationTime { get; set; }
 
         /// <summary>
         /// The end time of XL service
         /// </summary>
-        public TimeSpan XlServiceEndTime { get; set; }
+        public string XlServiceEndTime { get; set; }
 
         /// <summary>
         /// Usage state of override list

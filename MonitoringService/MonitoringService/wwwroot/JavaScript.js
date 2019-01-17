@@ -11,6 +11,7 @@ function CallBackend() {
         url: window.baseUrl + "/api",
         dataType: "json",
         success: function (data) {
+
             $("#requestSequenceId").text("Request sequence id: " + data.requestSequenceId);
             $("#phoneNumber").text("Phone: " + data.phoneNumber);
 
@@ -19,7 +20,7 @@ function CallBackend() {
             }
 
             if (data.isActive === true) {
-                $("#serviceLanguage").text(data.serviceLanguage);
+                $("#serviceLanguage").text("Language: " + data.serviceLanguage);
                 $("#isActive").text("Service active until " + data.expiryDateAndTime);
 
                 if (data.isXlServiceActive === false) {
@@ -49,37 +50,26 @@ function CallBackend() {
                     if (data.xlService.isOverrideListInUse === true) {
                         $("#overrideList").text("Except for");
 
-                        var contacts = data.xlService.Contacts;
-                        CreateTable(contacts);
+                        var tableContainer = document.getElementsByTagName('body')[0];
+                        var table = document.createElement("table");
+                        tableContainer.appendChild(table);
+
+                        $("table").append("<tr><th class='headerColor'>Phone</th>" +
+                            "<th class='headerColor'>Name</th></tr>");
+
+                        $.each(data.xlService.contacts, function (i, contact) {
+                            $("table").append(
+                                "<tr><td>" +
+                                contact.phoneNumber +
+                                "</td><td>" +
+                                contact.name +
+                                "</td></tr>");
+                        });
                     }
                 }
             }
-        }, error: function (error) {
-            DisplayError(error);
+        }, error: function (request, status, errorThrown) {
+            alert(request.responseText);
         }
     });
-}
-
-function CreateTable(contacts) {
-    var tableContainer = document.getElementById("overrideList");
-    var table = document.createElement("table");
-
-    $("table").append("<tr><th class='headerColor'>Phone</th>" +
-        "<th class='headerColor'>Name</th></tr>");
-
-    contacts.forEach(function (contact) {
-        $("table").append(
-            "<tr><td>" +
-            contact.phoneNumber +
-            "</td><td>" +
-            contact.name +
-            "</td></tr>");
-    });
-
-    tableContainer.appendChild(table);
-}
-
-function DisplayError(error) {
-    var message = JSON.parse(error.responseText);
-    alert(message.Message);
 }

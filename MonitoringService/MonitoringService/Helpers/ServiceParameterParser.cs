@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
 using MonitoringService.Enums;
 using MonitoringService.Interfaces;
 using MonitoringService.Models;
@@ -26,15 +25,15 @@ namespace MonitoringService.Helpers
         private readonly string _activeOverrideList = "K";
         private readonly string _notActiveOverrideList = "E";
 
-        /// <summary>
-        /// Gives index to data source file
-        /// </summary>
-        public int DataSourceFileIndex = 1;
+        ///// <summary>
+        ///// Gives index to data source file
+        ///// </summary>
+        //public int DataSourceFileIndex = 1;
 
         /// <summary>
         /// Gives value to RequestSequenceId
         /// </summary>
-        public int Id = 1;
+        public int Index = 1;
 
         #endregion
 
@@ -52,7 +51,7 @@ namespace MonitoringService.Helpers
             }
             var service = new Service()
             {
-                RequestSequenceId = Id,
+                RequestSequenceId = Index,
                 PhoneNumber = ParsePhoneNumber(line.Substring(1, 10)),
                 IsActive = ParseIsActive(line.Substring(0, 1), _activeService, _notActiveService)
             };
@@ -80,7 +79,15 @@ namespace MonitoringService.Helpers
                 }
             }
 
-            Id++;
+            if (Index == 9)
+            {
+                Index = 1;
+            }
+            else
+            {
+                Index++;
+            }
+            
             return service;
         }
 
@@ -90,7 +97,8 @@ namespace MonitoringService.Helpers
         /// <returns>With the lines of the file</returns>
         public string[] ReadFile()
         {
-            var sourcePath = _dataSourceBaseUrl + "data_"+ DataSourceFileIndex +".txt";
+            //var sourcePath = "https://people.proekspert.ee/ak/data_1.txt";
+            var sourcePath = _dataSourceBaseUrl + "data_"+ Index +".txt";
             var request = WebRequest.Create(sourcePath) as HttpWebRequest;
 
             if (request == null)
@@ -109,7 +117,6 @@ namespace MonitoringService.Helpers
             var wholeContent = streamReader.ReadToEnd();
             streamReader.Close();
 
-            DataSourceFileIndex++;
             return wholeContent.Split('\n');
         }
 
@@ -198,7 +205,7 @@ namespace MonitoringService.Helpers
             throw new Exception("Unable to define date and time.");
         }
 
-        private TimeSpan ParseTimeSpan(string line)
+        private string ParseTimeSpan(string line)
         {
             if (string.IsNullOrEmpty(line))
             {
@@ -214,7 +221,7 @@ namespace MonitoringService.Helpers
 
             if (success)
             {
-                return timeSpan;
+                return timeSpan.ToString(@"hh\:mm");
             }
 
             throw new Exception("Unable to define time.");
@@ -227,14 +234,11 @@ namespace MonitoringService.Helpers
                 throw new Exception("Invalid input");
             }
 
-            var phoneNumberPattern = @"([0-9])+";
-            Match phoneNumberMatch = Regex.Match(line, phoneNumberPattern);
+            var phoneNumbersInFile = line.Substring(0, 120);
+            var names = line.Substring(120);
 
-            var namePattern = @"[A-Za-z ]+$";
-            Match nameMatch = Regex.Match(line, namePattern);
-
-            var phoneNumberList = Split(phoneNumberMatch.ToString(), 10);
-            var nameList = Split(nameMatch.ToString(), 20);
+            var phoneNumberList = Split(phoneNumbersInFile, 15);
+            var nameList = Split(names, 20);
 
             if (phoneNumberList.Count() != nameList.Count())
             {
@@ -245,9 +249,11 @@ namespace MonitoringService.Helpers
 
             for (int i = 0; i < phoneNumberList.Count(); i++)
             {
+                var numberString = phoneNumberList.ElementAt(i);
+
                 var contact = new Contact()
                 {
-                    PhoneNumber = phoneNumberList.ElementAt(i),
+                    PhoneNumber = numberString.Substring(0, 10),
                     Name = nameList.ElementAt(i)
                 };
 

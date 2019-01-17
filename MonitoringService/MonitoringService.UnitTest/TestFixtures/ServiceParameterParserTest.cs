@@ -31,12 +31,12 @@ namespace MonitoringService.UnitTest.TestFixtures
         #region TearDown
 
         /// <summary>
-        /// Sets back Id value to one
+        /// Sets back Index value to one
         /// </summary>
         [TearDown]
         public void TestTearDown()
         {
-            _serviceParameterParser.Id = 1;
+            _serviceParameterParser.Index = 1;
         } 
 
         #endregion
@@ -51,7 +51,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         {
             var service = _serviceParameterParser.ParseToService(PassiveServiceLineInFile);
             Assert.AreEqual(PassiveService, service);
-            Assert.AreEqual(2, _serviceParameterParser.Id);
+            Assert.AreEqual(2, _serviceParameterParser.Index);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         {
             var service = _serviceParameterParser.ParseToService(ActiveServiceLineInFile);
             Assert.AreEqual(ActiveService, service);
-            Assert.AreEqual(2, _serviceParameterParser.Id);
+            Assert.AreEqual(2, _serviceParameterParser.Index);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         {
             var service = _serviceParameterParser.ParseToService(ActiveXlServiceLineInFile);
             Assert.AreEqual(ActiveXlService, service);
-            Assert.AreEqual(2, _serviceParameterParser.Id);
+            Assert.AreEqual(2, _serviceParameterParser.Index);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         {
             var service = _serviceParameterParser.ParseToService(OverrideListInUseLineInFile);
             Assert.AreEqual(ServiceWithOverrideList, service);
-            Assert.AreEqual(2, _serviceParameterParser.Id);
+            Assert.AreEqual(2, _serviceParameterParser.Index);
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         {
             var result = _serviceParameterParser.ReadFile();
             Assert.IsNotEmpty(result);
-            Assert.AreEqual(2, _serviceParameterParser.DataSourceFileIndex);
+            Assert.AreEqual(2, _serviceParameterParser.Index);
         }
 
         #endregion
