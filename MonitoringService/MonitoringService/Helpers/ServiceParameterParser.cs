@@ -25,13 +25,8 @@ namespace MonitoringService.Helpers
         private readonly string _activeOverrideList = "K";
         private readonly string _notActiveOverrideList = "E";
 
-        ///// <summary>
-        ///// Gives index to data source file
-        ///// </summary>
-        //public int DataSourceFileIndex = 1;
-
         /// <summary>
-        /// Gives value to RequestSequenceId
+        /// Gives value to RequestSequenceId and index to data source path
         /// </summary>
         public int Index = 1;
 
@@ -97,7 +92,6 @@ namespace MonitoringService.Helpers
         /// <returns>With the lines of the file</returns>
         public string[] ReadFile()
         {
-            //var sourcePath = "https://people.proekspert.ee/ak/data_1.txt";
             var sourcePath = _dataSourceBaseUrl + "data_"+ Index +".txt";
             var request = WebRequest.Create(sourcePath) as HttpWebRequest;
 

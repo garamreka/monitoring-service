@@ -2,10 +2,10 @@
 
     window.baseUrl = "https://localhost:44350";
 
-    CallBackend();
+    CallBackendAndDisplayData();
 });
 
-function CallBackend() {
+function CallBackendAndDisplayData() {
     $.ajax({
         type: "GET",
         url: window.baseUrl + "/api",
