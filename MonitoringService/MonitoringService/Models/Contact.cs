@@ -1,4 +1,6 @@
-﻿namespace MonitoringService.Models
+﻿using System;
+
+namespace MonitoringService.Models
 {
     /// <summary>
     /// Implementation of Contact class
@@ -35,6 +37,11 @@
 
             return PhoneNumber == toCompareWith.PhoneNumber &&
                    Name == toCompareWith.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(PhoneNumber, Name);
         }
 
         #endregion

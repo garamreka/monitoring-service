@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using MonitoringService.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -74,6 +75,11 @@ namespace MonitoringService.Models
                    ServiceLanguage == toCompareWith.ServiceLanguage &&
                    IsXlServiceActive == toCompareWith.IsXlServiceActive &&
                    XlService == toCompareWith.XlService;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(RequestSequenceId, PhoneNumber, IsActive, ExpiryDateAndTime, ServiceLanguage, IsXlServiceActive, XlService);
         }
 
         #endregion

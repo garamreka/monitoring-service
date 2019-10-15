@@ -62,6 +62,11 @@ namespace MonitoringService.Models
                    Contacts == toCompareWith.Contacts;
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(XlServiceLanguage, XlServiceActivationTime, XlServiceEndTime, IsOverrideListInUse, Contacts);
+        }
+
         #endregion
     }
 }
