@@ -197,7 +197,7 @@ namespace MonitoringService.UnitTest.TestFixtures
         {
             var result = _serviceParameterParser.ReadFile();
             Assert.IsNotEmpty(result);
-            Assert.AreEqual(2, _serviceParameterParser.Index);
+            Assert.AreEqual(1, _serviceParameterParser.Index);
         }
 
         #endregion
